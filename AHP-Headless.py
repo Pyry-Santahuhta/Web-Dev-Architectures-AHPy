@@ -14,6 +14,9 @@ def pairwise_comparisons(comparedlist, mode):
                  importance = input("How much more better is {} than {} in {}? (1-9) ".format(pair[0], pair[1], mode))
             if "/" in importance:
                 importance = float(sum(Fraction(s) for s in importance.split()))
+            elif(importance == "" or importance.isalpha()):
+                print("Invalid input, exiting")
+                exit(1)
             comparisons[pair] = importance
             comparison_step += 1
         comparedlist.pop(0)
