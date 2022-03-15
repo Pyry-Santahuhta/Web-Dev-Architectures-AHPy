@@ -16,7 +16,6 @@ def pairwise_comparisons(comparedlist, mode):
             else:
                  importance = input("How much more better is {} than {} in {}? (1-9) ".format(pair[0], pair[1], mode))
             if "/" in importance:
-                #importance = float(sum(Fraction(s) for s in importance.split()))
                 importance = Fraction(importance)
             elif(importance == "" or importance.isalpha()):
                 print("Invalid input, exiting")
@@ -28,7 +27,7 @@ def pairwise_comparisons(comparedlist, mode):
     return comparisons, copiedlist
 
 
-def AHP(): # TODO: luovuta
+def AHP(): 
     criteria = ["Performance", "Budget", "Versatility", "Ease_of_development", "Time_to_market"]
     alternatives = ["Monolithic CMS", "Headless CMS", "Full stack"]
 
@@ -47,7 +46,7 @@ def AHP(): # TODO: luovuta
 
     if(int(input("And alternatives? "))):
         criteria_comparisons = {('Performance', 'Budget'): 0.25, ('Performance', 'Versatility'): 0.25, ('Performance', 'Ease_of_development'): 1.0, ('Performance', 'Time_to_market'): 0.16666666666666666, ('Budget', 'Versatility'): 8.0, ('Budget', 'Ease_of_development'): 6.0, ('Budget', 'Time_to_market'): 3.0, ('Versatility', 'Ease_of_development'): 0.25, ('Versatility', 'Time_to_market'): 0.2, ('Ease_of_development', 'Time_to_market'): 1.0}
-       
+
     else:
         criteria_comparisons, criteria = pairwise_comparisons(criteria, "criteria")
 
@@ -61,32 +60,6 @@ def AHP(): # TODO: luovuta
     Criteria.add_children([Performance, Budget, Versatility, Ease_of_development, Time_to_market])
 
     Criteria.report(show=True)
-
- 
-    #print("Yeahboi: %.2f" % (sum([Criteria.target_weights["Monolithic CMS"], Criteria.target_weights["Headless CMS"], Criteria.target_weights["Full stack"]])))
-
-def AHP2(): # legitti
-    experience_comparisons = {('Moll', 'Nell'): 9, ('Moll', 'Sue'): 9, ('Nell', 'Sue'): 9}
-    education_comparisons = {('Moll', 'Nell'): 9, ('Moll', 'Sue'): 9, ('Nell', 'Sue'): 9}
-    charisma_comparisons = {('Moll', 'Nell'): 9, ('Moll', 'Sue'): 9, ('Nell', 'Sue'): 9}
-    age_comparisons = {('Moll', 'Nell'): 1/3, ('Moll', 'Sue'): 5, ('Nell', 'Sue'): 9}
-
-    criteria_comparisons = {('Experience', 'Education'): 9, ('Experience', 'Charisma'): 9, ('Experience', 'Age'): 9, ('Education', 'Charisma'): 9, ('Education', 'Age'): 9, ('Charisma', 'Age'): 9}
-
-    experience = ahpy.Compare('Experience', experience_comparisons, precision=3, random_index='saaty')
-    education = ahpy.Compare('Education', education_comparisons, precision=3, random_index='saaty')
-    charisma = ahpy.Compare('Charisma', charisma_comparisons, precision=3, random_index='saaty')
-    age = ahpy.Compare('Age', age_comparisons, precision=3, random_index='saaty')
-
-    criteria = ahpy.Compare('Criteria', criteria_comparisons, precision=3, random_index='saaty')
-
-    criteria.add_children([experience, education, charisma, age])
-    criteria.report(show=True)
-
-
-#AHP3()
-# Pyry koodaa kovin mutta tulkki vittuilloo
-#AHP2()
 
 AHP()
 
